@@ -22,29 +22,35 @@ const Titulo = styled.h2`
 export default function UltimosLancamentos() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:8010/livros", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
-        },
-      })
-      .then((response) => {
-        setData(response.data);
-      });
+    axios.get("http://localhost:4010/api/livros").then((response) => {
+      console.log(response);
+      setData(response.data);
+    });
   }, []);
 
   return (
     <UltimosLancamentosContainer>
       <Titulo>Ultimos Lançamentos</Titulo>
-      <div style={{ margin: "0 auto" }}>
+      <div
+        style={{ margin: "0 auto", display: "flex", flexDirection: "column" }}
+      >
         {data.map((livro, i) => (
-          <img
-            src={livro.src}
-            alt="livro"
-            key={i}
-            style={{ margin: 10, width: 300 }}
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={livro.Src.String}
+              alt="livro"
+              key={i}
+              style={{ margin: 10, width: 300 }}
+            />
+            <h3>{livro.Nome}</h3>
+            <h4>{livro.Descricao.String}</h4>
+          </div>
         ))}
       </div>
     </UltimosLancamentosContainer>
