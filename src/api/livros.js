@@ -12,7 +12,7 @@ var requestOptions = {
 
 const livrosResponse = [];
 
-fetch("http://localhost:8010/livros", requestOptions)
+fetch("projeto-back-1630043243.us-west-2.elb.amazonaws.com:4010/livros", requestOptions)
   .then((response) => response.text())
   .then((result) => livrosResponse.push(result))
   .catch((error) => console.log("error", error));
